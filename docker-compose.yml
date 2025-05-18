@@ -27,7 +27,7 @@ services:
 
     # Postgresql Service
     pro-db:
-        image: postgres:15.1
+        image: postgres:17.1
         container_name: pro-db
         restart: unless-stopped
         tty: true
@@ -64,18 +64,6 @@ services:
         depends_on:
             - pro-app
             - pro-db
-
-    # Redis
-    pro-redis:
-        image: redis:alpine
-        container_name: pro-redis
-        command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
-        volumes:
-            - ./docker/redis:/data
-        ports:
-            - "${REDIS_EXTERNAL_PORT}:6379"
-        networks:
-            - pro-app-network
 
 # Docker Networks
 networks:
