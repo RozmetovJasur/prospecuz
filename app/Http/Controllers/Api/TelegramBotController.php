@@ -88,7 +88,7 @@ class TelegramBotController extends Controller
                 $lines = explode("\n", trim($messageText));
 
                 if (count($lines) == 4 && str_contains($messageText, '🟢 Пополнение')
-                    && str_contains($messageText, '️💵 Сумма')
+                    && str_contains($messageText, '💵 Сумма')
                     && str_contains($messageText, '✍️ Примечание')
                     && str_contains($messageText, '📅 Дата')) {
 
@@ -119,6 +119,7 @@ class TelegramBotController extends Controller
                         $payment->summa = $summa;
                         $payment->comment = $comment;
                         $payment->type = $payment::TYPE_IN;
+                        $payment->date = $date;
                         $payment->saveOrFail();
 
                         $user->main_balance += $summa;
@@ -142,8 +143,9 @@ class TelegramBotController extends Controller
                     }
 
                 }
+
                 if (count($lines) == 4 && str_contains($messageText, '🔴 Расходы')
-                    && str_contains($messageText, '️💵 Сумма')
+                    && str_contains($messageText, '💵 Сумма')
                     && str_contains($messageText, '✍️ Примечание')
                     && str_contains($messageText, '📅 Дата')) {
 
@@ -174,7 +176,7 @@ class TelegramBotController extends Controller
                         $payment->summa = $summa;
                         $payment->comment = $comment;
                         $payment->date = $date;
-                        $payment->type = $payment::TYPE_IN;
+                        $payment->type = $payment::TYPE_OUT;
                         $payment->saveOrFail();
 
                         $user->main_balance -= $summa;
