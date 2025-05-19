@@ -193,23 +193,24 @@ class TelegramBotController extends Controller
                                 "🔴 Расходы: " . nf($payment->summa) . PHP_EOL .
                                 "📅 Дата: " . $payment->date . PHP_EOL .
                                 "✍️ Примечание: " . $payment->comment . PHP_EOL . PHP_EOL .
-                                "💵 Приход за текущий месяц: " . (balanceFormat($out_summa, $user->out_summa)) . PHP_EOL .
+                                "💵 Расходы за текущий месяц: " . (balanceFormat($out_summa, $user->out_summa)) . PHP_EOL .
                                 "🏦 Баланс: " . (balanceFormat($mainBalance, $user->main_balance))
                         ]);
                     }
+                    if ($messageText == '/balance') {
 
-                    return $this->bot->sendMessage([
-                        'chat_id' => $user->telegram_chat_id,
-                        'reply_parameters' => [
-                            'message_id' => $messageId
-                        ],
-                        'parse_mode' => 'HTML',
-                        'text' => "💵 Приход за текущий месяц: " . (nf($user->in_summa)) . PHP_EOL .
-                            "💵 Расход  за текущий месяц: " . (nf($user->out_summa)) . PHP_EOL .
-                            "🏦 Баланс: " . (nf($user->main_balance))
-                    ]);
+                        return $this->bot->sendMessage([
+                            'chat_id' => $user->telegram_chat_id,
+                            'reply_parameters' => [
+                                'message_id' => $messageId
+                            ],
+                            'parse_mode' => 'HTML',
+                            'text' => "💵 Приход за текущий месяц: " . (nf($user->in_summa)) . PHP_EOL .
+                                "💵 Расход  за текущий месяц: " . (nf($user->out_summa)) . PHP_EOL .
+                                "🏦 Баланс: " . (nf($user->main_balance))
+                        ]);
+                    }
                 }
-
             }
         } catch (Exception $e) {
             return $this->bot->sendMessage([
