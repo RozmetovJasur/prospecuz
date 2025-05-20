@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int|null $user_id
@@ -28,12 +28,59 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BotFinancialOperations whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BotFinancialOperations whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BotFinancialOperations whereUserId($value)
+ * @property string $type_payment
+ * @property string $telegram_who
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BotFinancialOperations whereTelegramWho($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BotFinancialOperations whereTypePayment($value)
  * @mixin \Eloquent
  */
 class BotFinancialOperations extends Model
 {
     const TYPE_IN = 'in';
     const TYPE_OUT = 'out';
+    const TYPE_PAYMENT_CASH = 'cash';
+    const TYPE_PAYMENT_TRANSFER = 'transfer';
 
     protected $table = 'bot_financial_operations';
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'telegram_who' => 'array',
+        ];
+    }
+
+    public function getTypePaymentLabel(): string
+    {
+        return match ($this->type_payment) {
+            self::TYPE_PAYMENT_CASH => 'Наличные',
+            self::TYPE_PAYMENT_TRANSFER => 'Перечисление',
+            default => 'Неизвестно',
+        };
+    }
+
+    public function getIsPaymentCash()
+    {
+        return $this->type_payment == self::TYPE_PAYMENT_CASH;
+    }
+
+    public function getIsTypeIn()
+    {
+        return $this->type == self::TYPE_IN;
+    }
+
+    public function getIsTypeOut()
+    {
+        return $this->type == self::TYPE_OUT;
+    }
+
+    public function getIsPaymentTransfer()
+    {
+        return $this->type_payment == self::TYPE_PAYMENT_TRANSFER;
+    }
 }

@@ -42,6 +42,18 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereTelegramChatId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereTelegramCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
+ * @property int $cash_balance Баланс наличные
+ * @property int $transfer_balance Баланс перечисления
+ * @property int $in_cash_summa Пополнение наличные
+ * @property int $in_transfer_summa Пополнение перечисления
+ * @property int $out_cash_summa Расходы наличные
+ * @property int $out_transfer_summa Расходы перечисления
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereCashBalance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereInCashSumma($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereInTransferSumma($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereOutCashSumma($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereOutTransferSumma($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereTransferBalance($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable
