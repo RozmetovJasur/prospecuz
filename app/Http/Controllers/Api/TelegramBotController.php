@@ -167,7 +167,7 @@ class TelegramBotController extends Controller
                     foreach ($patterns as $key => $pattern) {
                         preg_match($pattern, $messageText, $matches);
                         $result = $matches[0] ?? null;
-                        $transactionData[] = $key == 1 ? str_replace([' ', ' ', ' '], ['', '', ''], $result) : $result;
+                        $transactionData[] = $key == 0 ? str_replace([' ', ' ', ' '], ['', '', ''], $result) : $result;
                     }
 
                     if (count($transactionData) == 4) {
