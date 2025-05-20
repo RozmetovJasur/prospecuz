@@ -141,7 +141,7 @@ class TelegramBotController extends Controller
                                 "✍️ Примечание: " . $payment->comment . PHP_EOL . PHP_EOL .
 
                                 "💵 Приход за текущий месяц(Наличные): " . (balanceFormat($inCashSumma, $user->in_cash_summa)) . PHP_EOL .
-                                "💵 Приход за текущий месяц(Перечисление): " . (balanceFormat($inTransferSumma, $user->in_cash_summa)) . PHP_EOL . PHP_EOL .
+                                "💵 Приход за текущий месяц(Перечисление): " . (balanceFormat($inTransferSumma, $user->in_transfer_summa)) . PHP_EOL . PHP_EOL .
 
                                 "🏦 Баланс(Наличные): " . (balanceFormat($cashBalance, $user->cash_balance)) . PHP_EOL .
                                 "🏦 Баланс(Перечисление): " . (balanceFormat($transferBalance, $user->transfer_balance))
