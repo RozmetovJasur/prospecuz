@@ -144,7 +144,8 @@ class TelegramBotController extends Controller
                                 "💵 Приход за текущий месяц(Перечисление): " . (balanceFormat($inTransferSumma, $user->in_transfer_summa)) . PHP_EOL . PHP_EOL .
 
                                 "🏦 Баланс(Наличные): " . (balanceFormat($cashBalance, $user->cash_balance)) . PHP_EOL .
-                                "🏦 Баланс(Перечисление): " . (balanceFormat($transferBalance, $user->transfer_balance))
+                                "🏦 Баланс(Перечисление): " . (balanceFormat($transferBalance, $user->transfer_balance)). PHP_EOL . PHP_EOL .
+                                "💰 Общий баланс: " . (nf($user->cash_balance + $user->transfer_balance))
                         ]);
 
                     }
@@ -206,7 +207,8 @@ class TelegramBotController extends Controller
                                 "💵 Расходы за текущий месяц(Перечисление): " . (balanceFormat($outTransferSumma, $user->out_transfer_summa)) . PHP_EOL . PHP_EOL .
 
                                 "🏦 Баланс(Наличные): " . (balanceFormat($cashBalance, $user->cash_balance)) . PHP_EOL .
-                                "🏦 Баланс(Перечисление): " . (balanceFormat($transferBalance, $user->transfer_balance))
+                                "🏦 Баланс(Перечисление): " . (balanceFormat($transferBalance, $user->transfer_balance)). PHP_EOL . PHP_EOL .
+                                "💰 Общий баланс: " . (nf($user->cash_balance + $user->transfer_balance))
                         ]);
                     }
                 }
@@ -227,7 +229,8 @@ class TelegramBotController extends Controller
                             "🔴 Расход за текущий месяц(Перечисление): " . (nf($user->out_transfer_summa)) . PHP_EOL . PHP_EOL .
 
                             "🏦 Баланс(Наличные): " . (nf($user->cash_balance)) . PHP_EOL .
-                            "🏦 Баланс(Перечисление): " . (nf($user->transfer_balance))
+                            "🏦 Баланс(Перечисление): " . (nf($user->transfer_balance)) . PHP_EOL . PHP_EOL .
+                            "💰 Общий баланс: " . (nf($user->cash_balance + $user->transfer_balance))
                     ]);
                 }
             }
